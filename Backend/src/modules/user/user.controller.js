@@ -1,4 +1,4 @@
-import { AppError } from "../../middleware/appError.js";
+import { AppError } from "../../../middleware/appError.js";
 import { User } from "../../models/user.model.js";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";

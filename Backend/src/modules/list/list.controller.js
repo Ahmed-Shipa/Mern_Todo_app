@@ -1,4 +1,4 @@
-import { List } from "../../../models/list.model.js";
+import { List } from "../../models/list.model.js";
 
 // add list
 const addList = async (req, res, next) => {

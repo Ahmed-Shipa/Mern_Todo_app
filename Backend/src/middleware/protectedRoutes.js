@@ -1,4 +1,4 @@
-import { User } from "../models/user.model.js";
+import { User } from "../src/models/user.model.js";
 import { AppError } from "./appError.js";
 import { catchError } from "./catchError.js";
 import JWT from "jsonwebtoken";
