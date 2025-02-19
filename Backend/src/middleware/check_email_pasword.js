@@ -1,4 +1,4 @@
-import { User } from "../src/models/user.model.js";
+import { User } from "../../src/models/user.model.js";
 import { AppError } from "./appError.js";
 import bcrypt from "bcrypt";
 

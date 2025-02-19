@@ -6,10 +6,10 @@ process.on("uncaughtException", () => {
 import express from "express";
 import { dbConnection } from "./dBConnection/dBConnection.js";
 import { userRouter } from "./src/modules/user/user.routes.js";
-import { globalError } from "./middleware/globalError.js";
-import { bootstrap } from "./src/utilities/app.routes.js";
+import { globalError } from "./src/middleware/globalError.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import { listRouter } from "./src/modules/list/list.routes.js";
 
 const app = express();
 const port = 3000;
@@ -23,7 +23,8 @@ dotenv.config();
 app.use(express.json());
 
 // main app routes
-bootstrap(app);
+app.use("/users", userRouter);
+app.use("/lists", listRouter);
 
 // handle unhandled routes
 app.use("*", (req, res, next) => {

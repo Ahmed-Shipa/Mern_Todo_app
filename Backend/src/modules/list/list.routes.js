@@ -5,8 +5,8 @@ import {
   getLists,
   updateList,
 } from "./list.controller.js";
-import { catchError } from "../../../middleware/catchError.js";
-import { protectedRoutes } from "../../../middleware/protectedRoutes.js";
+import { catchError } from "../../middleware/catchError.js";
+import { protectedRoutes } from "../../../src/middleware/protectedRoutes.js";
 
 export const listRouter = express.Router();
 
