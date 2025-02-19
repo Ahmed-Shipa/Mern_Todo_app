@@ -10,6 +10,7 @@ import { globalError } from "./src/middleware/globalError.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import { listRouter } from "./src/modules/list/list.routes.js";
+import { AppError } from "./src/middleware/appError.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -40,4 +41,16 @@ process.on("unhandledRejection", (err) => {
 });
 
 app.get("/", (req, res) => res.send("Hello World!"));
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+const startServer = async () => {
+  try {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (err) {
+    console.error("Server failed to start:", err);
+    process.exit(1);
+  }
+};
+
+startServer();
