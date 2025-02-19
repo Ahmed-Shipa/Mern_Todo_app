@@ -1,6 +1,6 @@
 import express from "express";
 
-import { catchError } from "../../../middleware/catchError.js";
+import { catchError } from "../../middleware/catchError.js";
 import {
   deleteUser,
   getUsers,
@@ -8,7 +8,7 @@ import {
   signUp,
   updateUser,
 } from "./user.controller.js";
-import { check_email_password } from "../../../middleware/check_email_pasword.js";
+import { check_email_password } from "../../middleware/check_email_pasword.js";
 
 export const userRouter = express.Router();
 userRouter.get("/", catchError(getUsers));
