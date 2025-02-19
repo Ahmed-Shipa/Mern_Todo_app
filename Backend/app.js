@@ -12,7 +12,7 @@ import cors from "cors";
 import { listRouter } from "./src/modules/list/list.routes.js";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // use cors to allow frontend
 app.use(cors());
