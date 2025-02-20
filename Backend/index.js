@@ -27,13 +27,14 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/lists", listRouter);
 
+
+// error handling middleware
+app.use(globalError);
+
 // handle unhandled routes
 app.use("*", (req, res, next) => {
   next(new AppError(`route not found ${req.originalUrl}`, 404));
 });
-
-// error handling middleware
-app.use(globalError);
 
 // catch errors outside express
 process.on("unhandledRejection", (err) => {
