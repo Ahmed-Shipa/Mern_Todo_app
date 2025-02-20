@@ -23,10 +23,12 @@ dotenv.config();
 
 app.use(express.json());
 
+// test endpoint
+app.get("/", (req, res) => res.send("Hello World!"));
+
 // main app routes
 app.use("/users", userRouter);
 app.use("/lists", listRouter);
-
 
 // error handling middleware
 app.use(globalError);
@@ -40,8 +42,6 @@ app.use("*", (req, res, next) => {
 process.on("unhandledRejection", (err) => {
   console.log(err);
 });
-
-app.get("/", (req, res) => res.send("Hello World!"));
 
 const startServer = async () => {
   try {
