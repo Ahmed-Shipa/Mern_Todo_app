@@ -4,16 +4,17 @@ import toast from "react-hot-toast";
 import { useFormik } from "formik";
 
 export default function UpdateNote() {
+  // backend url
+  let backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   // get the id from the url
   let { id } = useParams();
 
   // update notes
   async function updateNotes(values) {
-    await axios
-      .put(`http://localhost:3000/lists/update/${id}`, values)
-      .then(() => {
-        toast.success("Note updated");
-      });
+    await axios.put(`${backendUrl}/lists/update/${id}`, values).then(() => {
+      toast.success("Note updated");
+    });
   }
 
   let formik = useFormik({

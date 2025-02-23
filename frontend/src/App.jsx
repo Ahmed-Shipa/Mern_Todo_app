@@ -7,7 +7,7 @@ import SignUp from "./Components/SignUp";
 import Login from "./Components/Login";
 import Todo from "./Components/Todo";
 import { Toaster } from "react-hot-toast";
-import  { UserContext } from "./Context/UserContext";
+import { UserContext } from "./Context/UserContext";
 import { useContext, useEffect } from "react";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import UpdateNote from "./Components/UpdateNote";

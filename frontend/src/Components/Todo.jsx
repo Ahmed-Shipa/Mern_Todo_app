@@ -7,6 +7,9 @@ import TodoCards from "./TodoCards";
 import { UserContext } from "../Context/UserContext";
 
 export default function Todo() {
+  // backend url
+  let backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   // get the token after login
   let { userToken } = useContext(UserContext);
 
@@ -16,7 +19,7 @@ export default function Todo() {
   // register the form
   async function noteSubmit(values) {
     await axios
-      .post(`http://localhost:3000/lists/addList`, values, {
+      .post(`${backendUrl}/lists/addList`, values, {
         headers: { token: userToken },
       })
       .then((res) => {

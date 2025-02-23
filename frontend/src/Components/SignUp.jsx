@@ -6,24 +6,25 @@ import * as Yup from "yup";
 import { useState } from "react";
 
 export default function SignUp() {
+  // backend url
+  let backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
   // register the form
   async function registerSubmit(values) {
     setLoading(true);
-    await axios
-      .post(`http://localhost:3000/users/signUp`, values)
-      .then((res) => {
-        if (res.data.error) {
-          toast.error(res.data.message);
-          setLoading(false);
-        } else {
-          toast.success("Success");
-          setLoading(false);
-          navigate("/login");
-        }
-      });
+    await axios.post(`${backendUrl}/users/signUp`, values).then((res) => {
+      if (res.data.error) {
+        toast.error(res.data.message);
+        setLoading(false);
+      } else {
+        toast.success("Success");
+        setLoading(false);
+        navigate("/login");
+      }
+    });
   }
 
   // use yup for validation

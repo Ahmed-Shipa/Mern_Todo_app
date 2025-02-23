@@ -5,6 +5,9 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Context/UserContext";
 
 export default function TodoCards() {
+  // backend url
+  let backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   // save the notes in state
   const [Notes, setNotes] = useState([]);
 
@@ -14,7 +17,7 @@ export default function TodoCards() {
   // get the notes
   async function getNotes() {
     await axios
-      .get(`http://localhost:3000/lists`, {
+      .get(`${backendUrl}/lists`, {
         headers: { token: userToken },
       })
       .then((res) => {
@@ -24,11 +27,9 @@ export default function TodoCards() {
 
   // delete notes
   async function deleteNotes(id) {
-    await axios
-      .delete(`http://localhost:3000/lists/delete/${id}`)
-      .then(() => {
-        toast.success("Note deleted");
-      });
+    await axios.delete(`${backendUrl}/lists/delete/${id}`).then(() => {
+      toast.success("Note deleted");
+    });
   }
 
   useEffect(() => {

@@ -7,6 +7,9 @@ import { useContext, useState } from "react";
 import { UserContext } from "../Context/UserContext";
 
 export default function Login() {
+  // backend url
+  let backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   let { setuserToken } = useContext(UserContext);
   // set loading state
   const [loading, setLoading] = useState(false);
@@ -16,23 +19,21 @@ export default function Login() {
   // register the form
   async function loginSubmit(values) {
     setLoading(true);
-    await axios
-      .post(`http://localhost:3000/users/login`, values)
-      .then((res) => {
-        if (res.data.error) {
-          setLoading(false);
-          toast.error(res.data.message);
-        } else {
-          toast.success("Success");
-          // store token in local storage
-          localStorage.setItem("token", res.data.token);
-          // store token in usercontext
-          setuserToken(res.data.token);
-          setLoading(false);
-          // navigate to home page
-          navigate("/");
-        }
-      });
+    await axios.post(`${backendUrl}/users/login`, values).then((res) => {
+      if (res.data.error) {
+        setLoading(false);
+        toast.error(res.data.message);
+      } else {
+        toast.success("Success");
+        // store token in local storage
+        localStorage.setItem("token", res.data.token);
+        // store token in usercontext
+        setuserToken(res.data.token);
+        setLoading(false);
+        // navigate to home page
+        navigate("/");
+      }
+    });
   }
 
   // use yup for validation
